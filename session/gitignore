@@ -1,1 +1,35 @@
+# Node modules
+node_modules/
 
+# Session files (CRITICAL)
+session/
+session/*
+
+# Temp files (Auto-generated)
+temp/
+temp/*
+
+# Environment variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Railway files
+railway.json
+
+# Public QR
+public/qr.png
+
+# Lock files
+package-lock.json
+yarn.lock
