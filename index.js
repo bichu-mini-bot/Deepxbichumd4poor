@@ -309,6 +309,24 @@ if (process.env.PAIRING_TELEGRAM === 'true' && process.env.TELEGRAM_BOT_TOKEN) {
     console.log('✅ Telegram bot connected');
 }
 
+// ========== QR IMAGE GENERATION WITH BICHUXMD BRANDING ==========
+app.get('/api/qr', async (req, res) => {
+    const text = req.query.text || 'BICHUXMD - FREE BOT';
+    try {
+        const qrBuffer = await QRCode.toBuffer(text, {
+            color: {
+                dark: '#1e3c72',
+                light: '#ffffff'
+            },
+            width: 300
+        });
+        res.setHeader('Content-Type', 'image/png');
+        res.send(qrBuffer);
+    } catch (err) {
+        res.status(500).send('Error generating QR');
+    }
+});
+
 // ========== START SERVER & BOT ==========
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
