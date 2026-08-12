@@ -4,9 +4,7 @@
   "description": "FREE WhatsApp Bot for Everyone - BICHU MD",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "node test.js"
+    "start": "node index.js"
   },
   "keywords": [
     "whatsapp-bot",
