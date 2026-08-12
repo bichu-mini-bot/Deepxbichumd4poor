@@ -1,1 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BICHU MD - FREE WhatsApp Bot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            color: #333;
+            font-size: 28px;
+        }
+        .logo span {
+            color: #764ba2;
+        }
+        .logo p {
+            color: #666;
+            margin-top: 5px;
+        }
+        .free-badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 600;
+        }
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        .result.success {
+            display: block;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .result.error {
+            display: block;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .code-display {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin: 10px 0;
+            letter-spacing: 5px;
+            font-family: monospace;
+        }
+        .instructions {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #764ba2;
+        }
+        .instructions ol {
+            margin-left: 20px;
+        }
+        .instructions li {
+            margin: 8px 0;
+        }
+        .status-bar {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        .status-bar .online {
+            color: #28a745;
+        }
+        .status-bar .offline {
+            color: #dc3545;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #764ba2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>💝 <span>BICHU</span> MD</h1>
+            <p>FREE WhatsApp Bot for Everyone</p>
+            <span class="free-badge">✨ 100% FREE</span>
+        </div>
 
+        <div style="text-align: center; margin-bottom: 20px; color: #666;">
+            <p>🤖 <strong>200+ Commands</strong> | 💝 <strong>No Payment</strong></p>
+        </div>
+
+        <div class="form-group">
+            <label for="number">📱 Phone Number</label>
+            <input type="tel" id="number" placeholder="923001234567" required>
+            <small style="color: #666;">Enter without + or spaces</small>
+        </div>
+
+        <div class="form-group">
+            <label for="password">🔑 Password</label>
+            <input type="password" id="password" placeholder="Enter pairing password" required>
+        </div>
+
+        <button onclick="pairDevice()">🔗 Pair Device - FREE</button>
+
+        <div id="result" class="result"></div>
+
+        <div class="status-bar">
+            Status: <span id="statusText" class="offline">Offline</span>
+            <span id="statusDot" style="margin-left: 10px;">⚪</span>
+        </div>
+
+        <div style="margin-top: 15px; text-align: center; font-size: 13px; color: #28a745;">
+            💝 <strong>Made for those who can't afford</strong>
+        </div>
+
+        <div class="footer">
+            ⚡ Powered by BICHU MD v2.0<br>
+            💝 FREE for everyone
+        </div>
+    </div>
+
+    <script>
+        async function pairDevice() {
+            const number = document.getElementById('number').value;
+            const password = document.getElementById('password').value;
+            const resultDiv = document.getElementById('result');
+
+            if (!number || !password) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '❌ Please fill all fields';
+                return;
+            }
+
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '<div class="loading"></div> Generating pairing code...';
+
+            try {
+                const response = await fetch('/api/pair', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ number, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Pairing Code Generated!</h3>
+                        <div class="code-display">${data.data.code}</div>
+                        <div class="instructions">
+                            <h4>📌 Instructions:</h4>
+                            <ol>
+                                <li>Open WhatsApp on your phone</li>
+                                <li>Go to Settings > Linked Devices</li>
+                                <li>Tap "Link with Phone Number"</li>
+                                <li>Enter this code</li>
+                            </ol>
+                            <p style="margin-top: 10px; color: #666;">
+                                ⏳ Code expires in 2 minutes
+                            </p>
+                            <p style="margin-top: 10px; color: #28a745;">
+                                💝 <strong>This bot is FREE for everyone!</strong>
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `❌ ${data.message}`;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ Network Error: ${error.message}`;
+            }
+        }
+
+        async function checkStatus() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                const statusText = document.getElementById('statusText');
+                const statusDot = document.getElementById('statusDot');
+
+                if (data.authenticated) {
+                    statusText.className = 'online';
+                    statusText.textContent = 'Online ✅';
+                    statusDot.textContent = '🟢';
+                } else {
+                    statusText.className = 'offline';
+                    statusText.textContent = 'Offline ❌';
+                    statusDot.textContent = '🔴';
+                }
+            } catch (error) {
+                console.error('Status check failed:', error);
+            }
+        }
+
+        checkStatus();
+        setInterval(checkStatus, 30000);
+
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                pairDevice();
+            }
+        });
+    </script>
+</body>
+</html>
